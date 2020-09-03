@@ -1,14 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+    BrowserRouter as Router,
+    Link,
+    Route
+} from 'react-router-dom';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Detta kommer bli Björn Olssons Me-sida i React
         </p>
         <a
           className="App-link"
