@@ -1,10 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Här är min rapport för vecka 1
+Här finns instruktionerna hur man installerar modulerna och startar min Me-applikation.
+
+### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Download and install
 
 ### `npm install`
 
-First download this repo and then run the command.
+First download this repo from [Github](https://github.com/bjorn-87/my-react-app-frontend) and then run the command.
 
 ## Available Scripts
 

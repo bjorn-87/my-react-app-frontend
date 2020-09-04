@@ -1,0 +1,30 @@
+.info {
+    width: 50%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 1.5em;
+    min-height: 40em;
+}
+
+.me {
+    border: 1px solid #999;
+    padding: 0.5em;
+    margin: 1em;
+    width: 300px;
+    float: right;
+}
+
+@media screen and (max-width: 700px) {
+    .me {
+        float: none;
+        width: 100%;
+        margin: 0;
+        border: 0;
+        padding: 0;
+    }
+
+    .info {
+        width: 100%;
+        padding: 0;
+    }
+}

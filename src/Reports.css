@@ -1,0 +1,19 @@
+.reports {
+    width: 50%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 1.5em;
+    min-height: 40em;
+}
+
+.reports ul {
+    padding: 0.5em;
+}
+
+.reports a {
+    text-decoration: none;
+}
+
+.reports a:hover {
+    text-decoration: underline;
+}
