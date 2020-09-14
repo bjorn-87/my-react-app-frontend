@@ -1,30 +1,36 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown/with-html';
+import { Auth } from './Auth.js'
 
-import mdfile from './markdown/report1.md';
+// import mdfile from './markdown/report1.md';
 
-class Report extends Component {
-    constructor(props) {
-        super(props)
+function Report({ match }) {
+    const week = match.params.id;
+    const [text, setText] = useState();
 
-        this.state = {terms: null}
-    }
-
-    componentDidMount() {
-        fetch(mdfile)
-        .then((response) => response.text())
-        .then((text) => {
-            this.setState({ terms: text})
+    useEffect(() => {
+        fetch(`http://localhost:1337/reports/week/${week}`)
+        .then((response) => response.json())
+        .then((res) => {
+            // console.log(res);
+            setText(res.data.text);
         })
-    };
+    });
 
-    render() {
-        return (
-            <div>
-            <ReactMarkdown source={this.state.terms} escapeHtml={false} />
-            </div>
-        );
+    const EditLink = () => {
+        if (Auth.token) {
+            return <Link to={`/reports/edit/${match.params.id}`}>edit</Link>;
+        }
+        return "";
     }
+
+    return (
+        <div>
+        <EditLink/>
+        <ReactMarkdown source={text} escapeHtml={false} />
+        </div>
+    );
 }
 
 export default Report;

@@ -2,28 +2,42 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown/with-html';
 import "./Me.css";
 
-import mdfile from './markdown/me.md';
+// import mdfile from './markdown/me.md';
 
 class Me extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {terms: null}
+        this.state = {
+            error: null,
+            isLoaded: false,
+            data: []
+        };
     }
 
     componentDidMount() {
-        fetch(mdfile)
-        .then((response) => response.text())
-        .then((text) => {
-            this.setState({ terms: text})
-        })
-    };
-
+        fetch("http://localhost:1337/")
+        .then((response) => response.json())
+        .then(
+            (res) => {
+                this.setState({
+                    isLoaded: true,
+                    data: res.data
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        )
+    }
     render() {
+        // console.log(this.state.data.msg);
         return (
             <main className="info">
-            <img className="me" src='me.jpg' alt="Bild på mig" />
-            <ReactMarkdown source={this.state.terms} escapeHtml={false} />
+            <ReactMarkdown source={this.state.data.msg} escapeHtml={false} />
             </main>
         );
     }
@@ -32,6 +46,7 @@ class Me extends Component {
 export default Me;
 
 
+// <img className="me" src='me.jpg' alt="Bild på mig" />
 
 // import React from 'react';
 //

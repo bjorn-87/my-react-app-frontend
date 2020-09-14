@@ -6,9 +6,9 @@
     min-height: 40em;
 }
 
-.reports ul {
+/* .reports ul {
     padding: 0.5em;
-}
+} */
 
 .reports a {
     text-decoration: none;
@@ -16,4 +16,32 @@
 
 .reports a:hover {
     text-decoration: underline;
+}
+
+.weekNav {
+    padding: 0;
+}
+
+.weekNav li {
+    display: inline-block;
+    padding-right: 0.5em;
+}
+
+.weekNav li a {
+    color: blue;
+    text-decoration: none;
+}
+
+.weekNav a {
+    color: blue;
+    text-decoration: none;
+}
+
+.weekNav li a:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+.reports h1 {
+    margin-bottom: 0.5em;
 }

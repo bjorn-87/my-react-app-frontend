@@ -7,6 +7,8 @@ import {
 
 import Me from './Me.js';
 import Reports from './Reports.js';
+import {Login, Auth} from './Auth.js';
+import Register from './Register.js';
 import Logo from './logo.svg';
 
 import './App.css';
@@ -25,10 +27,15 @@ function App() {
                         <li>
                             <Link to="/reports">Reports</Link>
                         </li>
+                        <li>
+                            <Link to="/Login">Admin</Link>
+                        </li>
                     </ul>
                 </nav>
                 <Route exact path="/" component={Me} />
                 <Route path="/reports" component={Reports} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
                 </header>
                 <footer className="pageFooter">
                     <p>&copy; Björn Olsson 2020</p>
