@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 
 import "./Auth.css";
+import "./Buttons.css";
 
 var Auth = {
     token: "",
@@ -68,31 +69,41 @@ class Login extends Component {
             return <Redirect to={redirect} />
         } else if (Auth.token) {
             return (
-                <main>
-                <p>{Auth.user}</p>
+                <main className="loginPage">
+                <h3>{Auth.user}</h3>
                 </main>
             )
         }
         return (
-            <main>
+            <main className="loginPage">
+            <h2>Logga in</h2>
             <p>{this.state.message}</p>
-            <form className="LoginForm" onSubmit={this.handleSubmit}>
-            <label>
-                Logga in:
+            <form className="input" onSubmit={this.handleSubmit}>
+            <label className="input-label">
+                E-Post
             </label>
             <input
+                className="input"
                 type="email"
                 name="email"
+                placeholder="E-post"
+                required
                 value={this.state.email}
                 onChange={this.handleChange} />
+            <label className="input-label">
+                Lösenord
+            </label>
             <input
+                className="input"
                 type="password"
                 name="password"
+                placeholder="Lösenord"
+                required
                 value={this.state.password}
                 onChange={this.handleChange} />
-            <input type="submit" value="submit" />
+            <input className="button green-button" type="submit" value="Login" />
             </form>
-            <Link to="/register">Registrera</Link>
+            <Link to="/register">Registrera användare</Link>
             </main>
         )
     }

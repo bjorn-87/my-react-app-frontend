@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Auth } from './Auth.js';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
+
+import "./Input.css"
+import "./Buttons.css"
 
 class EditReport extends Component {
     constructor(props) {
@@ -22,10 +25,16 @@ class EditReport extends Component {
         fetch(`http://localhost:1337/reports/week/${week}`)
         .then((response) => response.json())
         .then((res) => {
-            this.setState({
-                text: res.data.text,
-                week: res.data.week
-            })
+            if (res.data.text) {
+                this.setState({
+                    text: res.data.text,
+                    week: res.data.week
+                })
+            } else {
+                this.setState({
+                    week: res.data.week
+                })
+            }
             // setText(res.data.text);
         })
     }
@@ -35,8 +44,8 @@ class EditReport extends Component {
             text: this.state.text,
             week: this.state.week
         }
-        console.log(payload);
-        console.log(Auth.token);
+        // console.log(payload);
+        // console.log(Auth.token);
 
         fetch('http://localhost:1337/reports/edit', {
             method: 'PUT',
@@ -48,7 +57,7 @@ class EditReport extends Component {
         })
         .then((response) => response.json())
         .then((res) => {
-            console.log(res);
+            // console.log(res);
             if (res.data) {
                 this.setState({
                     message: res.data.msg,
@@ -65,8 +74,7 @@ class EditReport extends Component {
     handleChange(event) {
         const target = event.target;
         const value = target.value;
-        const name = target.name;
-        console.log(this.state);
+        // console.log(this.state);
 
         this.setState({
             text: value
@@ -80,15 +88,17 @@ class EditReport extends Component {
         }
         return (
             <div>
-            <form className="editForm" onSubmit={this.handleSubmit}>
-                <label>
-                    <h3>Redigera week {week}</h3>
+            <h3>{this.state.message}</h3>
+            <form className="" onSubmit={this.handleSubmit}>
+                <label className="input-label">
+                    Redigera week {week}
                 </label>
                 <textarea
+                    className="input-textarea"
                     name="text"
                     value={this.state.text}
                     onChange={this.handleChange} />
-                <input type="submit" value="submit" />
+                <input className="button green-button" type="submit" value="submit" />
             </form>
             </div>
         )

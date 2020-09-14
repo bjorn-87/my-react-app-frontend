@@ -7,8 +7,9 @@ import {
 
 import Me from './Me.js';
 import Reports from './Reports.js';
-import {Login, Auth} from './Auth.js';
+import {Login} from './Auth.js';
 import Register from './Register.js';
+import Create from './Create.js';
 import Logo from './logo.svg';
 
 import './App.css';
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/reports" component={Reports} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <Route path="/create" component={Create} />
                 </header>
                 <footer className="pageFooter">
                     <p>&copy; Björn Olsson 2020</p>

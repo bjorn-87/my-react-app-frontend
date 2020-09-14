@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import {Link, Route, Switch} from 'react-router-dom';
 
 import Report from './Report.js';
 import { Login, Auth } from './Auth.js';
 import EditReport from './EditReport.js';
-import Create from './Create.js';
 import Register from './Register.js';
+// import Create from './Create.js';
 import "./Reports.css";
+import "./Buttons.css";
 
 class Reports extends Component {
     constructor(props) {
@@ -46,7 +47,6 @@ class Reports extends Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <Router>
                 <main className="reports">
                 <p>{Auth.user ? Auth.user : ""}</p>
                 <h2>Rapporter</h2>
@@ -56,17 +56,15 @@ class Reports extends Component {
                         <Link to={`/reports/week/${week.week}`}>week{week.week}</Link>
                         </li>
                     ))}
-                    {Auth.token ? <Link to="/reports/create">Skapa rapport</Link> : ""}
+                    {Auth.token ? <Link to="/create" className="createButton green-button">Skapa rapport</Link> : ""}
                     <Switch>
                         <Route path="/reports/week/:id" component={Report} />
-                        <Route path="/reports/create" component={Create} />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                         <Route path="/reports/edit/:id" component={EditReport} />
                     </Switch>
                 </ul>
                 </main>
-                </Router>
             );
         }
     }

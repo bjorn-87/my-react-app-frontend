@@ -32,11 +32,6 @@
     text-decoration: none;
 }
 
-.weekNav a {
-    color: blue;
-    text-decoration: none;
-}
-
 .weekNav li a:hover {
     color: #555;
     text-decoration: underline;

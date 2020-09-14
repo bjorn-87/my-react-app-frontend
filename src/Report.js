@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown/with-html';
 import { Auth } from './Auth.js'
 
+import "./Buttons.css";
+
 // import mdfile from './markdown/report1.md';
 
 function Report({ match }) {
@@ -20,13 +22,13 @@ function Report({ match }) {
 
     const EditLink = () => {
         if (Auth.token) {
-            return <Link to={`/reports/edit/${match.params.id}`}>edit</Link>;
+            return <Link to={`/reports/edit/${match.params.id}`} className="button blue-button editButton">edit</Link>;
         }
         return "";
     }
 
     return (
-        <div>
+        <div className="reportPage">
         <EditLink/>
         <ReactMarkdown source={text} escapeHtml={false} />
         </div>
