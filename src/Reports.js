@@ -5,6 +5,7 @@ import Report from './Report.js';
 import { Login, Auth } from './Auth.js';
 import EditReport from './EditReport.js';
 import Register from './Register.js';
+import GetUrl from './GetUrl.js';
 // import Create from './Create.js';
 import "./Reports.css";
 import "./Buttons.css";
@@ -13,7 +14,7 @@ class Reports extends Component {
     constructor(props) {
         super(props);
         // this.LoginCreate = this.LoginCreate.bind(this);
-
+        this.baseUrl = GetUrl();
         this.state = {
             error: null,
             isLoaded: false,
@@ -22,7 +23,7 @@ class Reports extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:1337/reports/week/")
+        fetch(`${this.baseUrl}reports/week/`)
         .then((response) => response.json())
         .then((res) => {
             this.setState({

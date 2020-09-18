@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Auth } from './Auth.js';
 // import { Redirect } from 'react-router-dom';
+import GetUrl from './GetUrl.js';
 
 import "./Input.css"
 import "./Buttons.css"
@@ -9,6 +10,7 @@ class EditReport extends Component {
     constructor(props) {
         super(props);
 
+        this.baseUrl = GetUrl();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
@@ -22,7 +24,7 @@ class EditReport extends Component {
 
     componentDidMount() {
         const week = this.props.match.params.id;
-        fetch(`http://localhost:1337/reports/week/${week}`)
+        fetch(`${this.baseUrl}reports/week/${week}`)
         .then((response) => response.json())
         .then((res) => {
             if (res.data.text) {
@@ -47,7 +49,7 @@ class EditReport extends Component {
         // console.log(payload);
         // console.log(Auth.token);
 
-        fetch('http://localhost:1337/reports/edit', {
+        fetch(`${this.baseUrl}reports/edit`, {
             method: 'PUT',
             headers: {
                 "Content-type": "application/json",

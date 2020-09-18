@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import GetUrl from './GetUrl.js';
 
 import "./Register.css";
 import "./Buttons.css";
@@ -8,6 +9,8 @@ import "./Input.css";
 class Register extends Component {
     constructor(props) {
         super(props);
+
+        this.baseUrl = GetUrl();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
@@ -22,9 +25,9 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        console.log(payload);
+        // console.log(payload);
 
-        fetch('http://localhost:1337/register', {
+        fetch(`${this.baseUrl}register`, {
             method: 'POST',
             headers: {
                 "Content-type": "application/json"

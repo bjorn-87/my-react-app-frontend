@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
+import GetUrl from './GetUrl.js';
 
 import "./Auth.css";
 import "./Buttons.css";
@@ -12,6 +13,8 @@ var Auth = {
 class Login extends Component {
     constructor(props) {
         super(props);
+
+        this.baseUrl = GetUrl();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
@@ -29,7 +32,7 @@ class Login extends Component {
         }
         // console.log(payload);
 
-        fetch('http://localhost:1337/login', {
+        fetch(`${this.baseUrl}login`, {
             method: 'POST',
             headers: {
                 "Content-type": "application/json"

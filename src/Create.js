@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Auth } from './Auth.js';
 import { Redirect, Link } from 'react-router-dom';
+import GetUrl from "./GetUrl.js";
 
 import "./Input.css"
 import "./Buttons.css"
@@ -10,6 +11,7 @@ class Create extends Component {
     constructor(props) {
         super(props);
 
+        this.baseUrl = GetUrl();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
@@ -23,7 +25,7 @@ class Create extends Component {
 
     componentDidMount() {
         const week = this.props.match.params.id;
-        fetch(`http://localhost:1337/reports/week/${week}`)
+        fetch(`${this.baseUrl}reports/week/${week}`)
         .then((response) => response.json())
         .then((res) => {
             this.setState({
@@ -42,7 +44,7 @@ class Create extends Component {
         // console.log(payload);
         // console.log(Auth.token);
 
-        fetch('http://localhost:1337/reports', {
+        fetch(`${this.baseUrl}reports`, {
             method: 'POST',
             headers: {
                 "Content-type": "application/json",
@@ -52,7 +54,7 @@ class Create extends Component {
         })
         .then((response) => response.json())
         .then((res) => {
-            console.log(res);
+            // console.log(res);
             if (res.data) {
                 this.setState({
                     message: res.data.msg,

@@ -29,7 +29,7 @@ function App() {
                             <Link to="/reports">Reports</Link>
                         </li>
                         <li>
-                            <Link to="/Login">Admin</Link>
+                            <Link to="/login">Admin</Link>
                         </li>
                     </ul>
                 </nav>

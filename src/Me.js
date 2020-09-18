@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown/with-html';
 import "./Me.css";
+import GetUrl from './GetUrl.js'
 
 // import mdfile from './markdown/me.md';
 
@@ -8,6 +9,7 @@ class Me extends Component {
     constructor(props) {
         super(props)
 
+        this.baseUrl = GetUrl();
         this.state = {
             error: null,
             isLoaded: false,
@@ -16,7 +18,7 @@ class Me extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:1337/")
+        fetch(this.baseUrl)
         .then((response) => response.json())
         .then(
             (res) => {
