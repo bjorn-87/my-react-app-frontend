@@ -23,19 +23,6 @@ class Create extends Component {
         };
     }
 
-    componentDidMount() {
-        const week = this.props.match.params.id;
-        fetch(`${this.baseUrl}reports/week/${week}`)
-        .then((response) => response.json())
-        .then((res) => {
-            this.setState({
-                text: res.data.text,
-                week: res.data.week
-            })
-            // setText(res.data.text);
-        })
-    }
-
     handleSubmit(event) {
         const payload =  {
             text: this.state.text,
