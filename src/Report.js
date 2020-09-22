@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown/with-html';
 import { Auth } from './Auth.js';
@@ -6,35 +7,62 @@ import GetUrl from './GetUrl.js';
 
 import "./Buttons.css";
 
-// import mdfile from './markdown/report1.md';
+class Report extends Component {
+    constructor(props) {
+        super(props);
+        this.baseUrl = GetUrl();
+        this.EditLink = this.EditLink.bind(this);
 
-function Report({ match }) {
-    const baseUrl = GetUrl();
-    const week = match.params.id;
-    const [text, setText] = useState();
+        this.state = {
+            text: ""
+        };
+    }
 
-    useEffect(() => {
-        fetch(`${baseUrl}reports/week/${week}`)
+    componentDidMount() {
+        const week = this.props.match.params.id;
+
+        fetch(`${this.baseUrl}reports/week/${week}`)
         .then((response) => response.json())
         .then((res) => {
             // console.log(res);
-            setText(res.data.text);
+            this.setState({
+                text: res.data.text
+            });
         })
-    });
+    }
 
-    const EditLink = () => {
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            const week = this.props.match.params.id;
+
+            fetch(`${this.baseUrl}reports/week/${week}`)
+            .then((response) => response.json())
+            .then((res) => {
+                // console.log(res);
+                this.setState({
+                    text: res.data.text
+                });
+            })
+        }
+    }
+
+    EditLink() {
+        const week = this.props.match.params.id;
         if (Auth.token) {
-            return <Link to={`/reports/edit/${match.params.id}`} className="button blue-button editButton">edit</Link>;
+            return <Link to={`/reports/edit/${week}`} className="button blue-button editButton">edit</Link>;
         }
         return "";
     }
 
-    return (
-        <div className="reportPage">
-        <EditLink/>
-        <ReactMarkdown source={text} escapeHtml={false} />
-        </div>
-    );
+    render() {
+        const text = this.state.text;
+        return (
+            <div className="reportPage">
+            <this.EditLink/>
+            <ReactMarkdown source={text} escapeHtml={false} />
+            </div>
+        );
+    }
 }
 
 export default Report;
