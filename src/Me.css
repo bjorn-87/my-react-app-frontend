@@ -1,4 +1,5 @@
 .info {
+    display: block;
     width: 50%;
     margin: 0 auto;
     background-color: white;
@@ -7,6 +8,7 @@
 }
 
 .me {
+    display: block;
     border: 1px solid #999;
     padding: 0.5em;
     margin: 1em;
@@ -19,12 +21,14 @@
         float: none;
         width: 100%;
         margin: 0;
+        margin-bottom: 1.4rem;
         border: 0;
         padding: 0;
     }
 
     .info {
-        width: 100%;
-        padding: 0;
+        width: inherit;
+        padding: 1em;
+        margin: 0;
     }
 }

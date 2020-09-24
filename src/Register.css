@@ -9,7 +9,7 @@
 
 @media (max-width: 667px) {
   .registerPage {
-    width: 100%;
-    padding: 0;
+    width: inherit;
+    padding: 1em;
   }
 }

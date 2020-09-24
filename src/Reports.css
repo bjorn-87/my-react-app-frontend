@@ -40,3 +40,11 @@
 .reports h1 {
     margin-bottom: 0.5em;
 }
+
+@media screen and (max-width: 700px) {
+    .reports {
+        width: inherit;
+        padding: 1em;
+        margin: 0;
+    }
+}

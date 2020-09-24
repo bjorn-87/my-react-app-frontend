@@ -5,3 +5,11 @@
     padding: 1.5em;
     min-height: 40em;
 }
+
+@media screen and (max-width: 700px) {
+    .createPage {
+        width: inherit;
+        padding: 1em;
+        margin: 0;
+    }
+}
