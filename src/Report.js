@@ -14,6 +14,7 @@ class Report extends Component {
         this.EditLink = this.EditLink.bind(this);
 
         this.state = {
+            error: null,
             text: ""
         };
     }
@@ -24,10 +25,15 @@ class Report extends Component {
         fetch(`${this.baseUrl}reports/week/${week}`)
         .then((response) => response.json())
         .then((res) => {
-            // console.log(res);
-            this.setState({
-                text: res.data.text
-            });
+            if (res.data) {
+                this.setState({
+                    text: res.data.text
+                });
+            } else if (res.errors) {
+                this.setState({
+                    text: res.errors.detail
+                })
+            }
         })
     }
 
@@ -38,10 +44,15 @@ class Report extends Component {
             fetch(`${this.baseUrl}reports/week/${week}`)
             .then((response) => response.json())
             .then((res) => {
-                // console.log(res);
-                this.setState({
-                    text: res.data.text
-                });
+                if (res.data) {
+                    this.setState({
+                        text: res.data.text
+                    });
+                } else if (res.errors) {
+                    this.setState({
+                        text: res.errors.detail
+                    })
+                }
             })
         }
     }
