@@ -21,9 +21,11 @@ addons:
 #   - mkdir geckodriver
 #   - tar -xzf geckodriver-v0.27.0-linux64.tar.gz -C geckodriver
 #   - export PATH=$PATH:$PWD/geckodriver
-
-before_script:
+install:
     - npm install
 
+before_script:
+    - npm start &
+
 script:
-    - npm start & npm run test-command
+    - npm test
