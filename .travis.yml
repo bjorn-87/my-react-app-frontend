@@ -22,6 +22,7 @@ before_install:
 
 before_script:
     - npm install
+    - npm start &
 
 script:
-    - npm start & npm test
+    - npm test
