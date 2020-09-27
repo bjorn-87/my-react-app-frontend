@@ -19,25 +19,25 @@ function App() {
         <Router>
             <div className="App">
                 <header className="App-header">
-                <nav className="NavBar">
-                    <img className="logo" src={Logo} alt="logo" />
-                    <ul>
-                        <li>
-                            <Link to="/">Me</Link>
-                        </li>
-                        <li>
-                            <Link to="/reports">Reports</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">Admin</Link>
-                        </li>
-                    </ul>
-                </nav>
-                <Route exact path="/" component={Me} />
-                <Route path="/reports" component={Reports} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/create" component={Create} />
+                    <nav className="NavBar">
+                        <img className="logo" src={Logo} alt="logo" />
+                        <ul>
+                            <li>
+                                <Link to="/">Me</Link>
+                            </li>
+                            <li>
+                                <Link to="/reports">Reports</Link>
+                            </li>
+                            <li>
+                                <Link to="/login">Admin</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <Route exact path="/" component={Me} />
+                    <Route path="/reports" component={Reports} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/create" component={Create} />
                 </header>
                 <footer className="pageFooter">
                     <p>&copy; Björn Olsson 2020</p>

@@ -30,6 +30,11 @@
 .weekNav li a {
     color: blue;
     text-decoration: none;
+    /* border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;  */
 }
 
 .weekNav li a:hover {

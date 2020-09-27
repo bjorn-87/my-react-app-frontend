@@ -24,24 +24,25 @@ class Reports extends Component {
 
     componentDidMount() {
         fetch(`${this.baseUrl}reports/week/`)
-        .then((response) => response.json())
-        .then((res) => {
-            this.setState({
-                isLoaded: true,
-                data: res.data
-            });
-        },
-        (error) => {
-            this.setState({
-                isLoaded: true,
-                error
-            });
+            .then((response) => response.json())
+            .then((res) => {
+                this.setState({
+                    isLoaded: true,
+                    data: res.data
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
             }
-        )
+            );
     }
 
     render() {
         const {error, isLoaded, data } = this.state;
+
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -49,26 +50,26 @@ class Reports extends Component {
         } else {
             return (
                 <main className="reports">
-                <p>{Auth.user ? Auth.user : ""}</p>
-                <h2>Rapporter</h2>
-                <ul className="weekNav">
-                    {data.map(week => (
-                        <li key={week.week}>
-                        <Link to={`/reports/week/${week.week}`}>week{week.week}</Link>
-                        </li>
-                    ))}
-                    {Auth.token ? <Link to="/create" className="createButton green-button">Skapa rapport</Link> : ""}
-                    <Switch>
-                        <Route path="/reports/week/:id" component={Report} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/register" component={Register} />
-                        <Route path="/reports/edit/:id" component={EditReport} />
-                    </Switch>
-                </ul>
+                    <p>{Auth.user ? Auth.user : ""}</p>
+                    <h2>Rapporter</h2>
+                    <ul className="weekNav">
+                        {data.map(week => (
+                            <li key={week.week}>
+                                <Link to={`/reports/week/${week.week}`}>week{week.week}</Link>
+                            </li>
+                        ))}
+                        {Auth.token ? <Link to="/create" className="createButton green-button">Skapa rapport</Link> : ""}
+                        <Switch>
+                            <Route path="/reports/week/:id" component={Report} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/register" component={Register} />
+                            <Route path="/reports/edit/:id" component={EditReport} />
+                        </Switch>
+                    </ul>
                 </main>
             );
         }
     }
-};
+}
 
 export default Reports;

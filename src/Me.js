@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown/with-html';
 import "./Me.css";
-import GetUrl from './GetUrl.js'
+import GetUrl from './GetUrl.js';
 
 // import mdfile from './markdown/me.md';
 
 class Me extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.baseUrl = GetUrl();
         this.state = {
@@ -19,27 +19,27 @@ class Me extends Component {
 
     componentDidMount() {
         fetch(this.baseUrl)
-        .then((response) => response.json())
-        .then(
-            (res) => {
-                this.setState({
-                    isLoaded: true,
-                    data: res.data
-                });
-            },
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-            }
-        )
+            .then((response) => response.json())
+            .then(
+                (res) => {
+                    this.setState({
+                        isLoaded: true,
+                        data: res.data
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );
     }
     render() {
         // console.log(this.state.data.msg);
         return (
             <main className="info">
-            <ReactMarkdown source={this.state.data.msg} escapeHtml={false} />
+                <ReactMarkdown source={this.state.data.msg} escapeHtml={false} />
             </main>
         );
     }

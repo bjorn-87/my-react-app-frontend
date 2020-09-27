@@ -3,9 +3,9 @@ import { Auth } from './Auth.js';
 import { Redirect, Link } from 'react-router-dom';
 import GetUrl from "./GetUrl.js";
 
-import "./Input.css"
-import "./Buttons.css"
-import "./Create.css"
+import "./Input.css";
+import "./Buttons.css";
+import "./Create.css";
 
 class Create extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class Create extends Component {
         const payload =  {
             text: this.state.text,
             week: this.state.week
-        }
+        };
         // console.log(payload);
         // console.log(Auth.token);
 
@@ -39,20 +39,20 @@ class Create extends Component {
             },
             body: JSON.stringify(payload)
         })
-        .then((response) => response.json())
-        .then((res) => {
-            // console.log(res);
-            if (res.data) {
-                this.setState({
-                    message: res.data.msg,
-                    redirect: "/reports/"
-                });
-            } else if (res.errors.detail === "SQLITE_CONSTRAINT: UNIQUE constraint failed: reports.week" ) {
-                this.setState({message: "Posten finns redan, ändra veckonummer"});
-            } else {
-                this.setState({message: res.errors.detail});
-            }
-        });
+            .then((response) => response.json())
+            .then((res) => {
+                // console.log(res);
+                if (res.data) {
+                    this.setState({
+                        message: res.data.msg,
+                        redirect: "/reports/"
+                    });
+                } else if (res.errors.detail === "SQLITE_CONSTRAINT: UNIQUE constraint failed: reports.week" ) {
+                    this.setState({message: "Posten finns redan, ändra veckonummer"});
+                } else {
+                    this.setState({message: res.errors.detail});
+                }
+            });
         event.preventDefault();
         // alert("submit");
     }
@@ -70,41 +70,42 @@ class Create extends Component {
     }
     render() {
         const redirect = this.state.redirect;
+
         if (!Auth.token) {
-            return <div className="createPage"><p>Logga in för att Skapa rapport</p></div>
+            return <div className="createPage"><p>Logga in för att Skapa rapport</p></div>;
         } else if (redirect) {
-            return <Redirect to={redirect}/>
+            return <Redirect to={redirect}/>;
         }
         return (
             <div className="createPage">
-            <h2>Skapa rapport</h2>
-            <h3>{this.state.message}</h3>
-            <form className="" onSubmit={this.handleSubmit}>
-                <label className="input-label">
-                    Vecka
-                </label>
-                <input
-                    type="number"
-                    className="input"
-                    name="week"
-                    min="1"
-                    required
-                    value={this.state.week}
-                    onChange={this.handleChange} />
-                <label className="input-label">
-                    Text
-                </label>
-                <textarea
-                    className="input-textarea"
-                    name="text"
-                    max="1000"
-                    value={this.state.text}
-                    onChange={this.handleChange} />
-                <input className="button green-button" type="submit" value="submit" />
-            </form>
-            <Link to="/reports">Tillbaka</Link>
+                <h2>Skapa rapport</h2>
+                <h3>{this.state.message}</h3>
+                <form className="" onSubmit={this.handleSubmit}>
+                    <label className="input-label">
+                        Vecka
+                    </label>
+                    <input
+                        type="number"
+                        className="input"
+                        name="week"
+                        min="1"
+                        required
+                        value={this.state.week}
+                        onChange={this.handleChange} />
+                    <label className="input-label">
+                        Text
+                    </label>
+                    <textarea
+                        className="input-textarea"
+                        name="text"
+                        max="1000"
+                        value={this.state.text}
+                        onChange={this.handleChange} />
+                    <input className="button green-button" type="submit" value="submit" />
+                </form>
+                <Link to="/reports">Tillbaka</Link>
             </div>
-        )
+        );
     }
 }
 
