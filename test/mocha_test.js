@@ -57,11 +57,12 @@ test.describe("React-me page", function() {
     test.it("Test index", function(done) {
         browser.getTitle().then(function(title) {
             assert.equal(title, "Me-sida jsramverk");
-        }).then(function() {
-            matchUrl("");
-        }).then(() => {
-            done();
         });
+
+        assertElementByCss("h1", "Me sida i kursen jsramverk");
+        matchUrl("");
+
+        done();
     });
 
     test.it("Test go to Reports", function(done) {
