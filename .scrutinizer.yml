@@ -3,7 +3,7 @@ build:
     coverage:
       tests:
         override:
-          - command: npm test
+          - command: npm run ci
             coverage:
               file: coverage/clover.xml
               format: clover
