@@ -1,9 +1,8 @@
+checks:
+    javascript: true
 build:
   nodes:
     coverage:
       tests:
         override:
-          - command: npm run ci
-            coverage:
-              file: coverage/clover.xml
-              format: clover
+          - js-scrutinizer-run
