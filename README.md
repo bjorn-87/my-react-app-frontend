@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bjorn-87/my-react-app-frontend.svg?branch=master)](https://travis-ci.org/bjorn-87/my-react-app-frontend)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Download and install
