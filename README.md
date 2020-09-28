@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/bjorn-87/my-react-app-frontend.svg?branch=master)](https://travis-ci.org/bjorn-87/my-react-app-frontend)
+[![Build Status](https://travis-ci.org/bjorn-87/my-react-app-frontend.svg?branch=master)](https://travis-ci.org/bjorn-87/my-react-app-frontend) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bjorn-87/my-react-app-frontend/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bjorn-87/my-react-app-frontend/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/bjorn-87/my-react-app-frontend/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bjorn-87/my-react-app-frontend/build-status/master)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
