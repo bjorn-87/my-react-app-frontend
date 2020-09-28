@@ -59,7 +59,6 @@ test.describe("React-me page", function() {
             assert.equal(title, "Me-sida jsramverk");
         });
 
-        assertElementByCss("h1", "Me sida i kursen jsramverk");
         matchUrl("");
 
         done();

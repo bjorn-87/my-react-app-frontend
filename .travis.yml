@@ -24,8 +24,8 @@ addons:
 install:
     - npm install
 
-before_script:
-    - npm start &
+# before_script:
+#     - npm start &
 
 script:
-    - npm test
+    - npm run ci
