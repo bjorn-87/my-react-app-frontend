@@ -9,11 +9,11 @@ const socket = io('https://socket-server.bjos19.me');
 var chatSave = {
     user: "",
     messages: []
-}
+};
 
 class Chat extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setUser = this.setUser.bind(this);
@@ -32,9 +32,9 @@ class Chat extends Component {
         this.setState({
             user: chatSave.user,
             messages: chatSave.messages
-        })
+        });
         // console.log(chatSave.messages);
-        socket.on('connect', function(data) {
+        socket.on('connect', function() {
             console.log("connected");
         });
 
@@ -63,7 +63,7 @@ class Chat extends Component {
         socket.emit("chat message", {
             user: this.state.newUser,
             message: `Joined the chat`
-        })
+        });
         event.preventDefault();
     }
 
@@ -97,31 +97,32 @@ class Chat extends Component {
         if (!chatSave.user) {
             return (
                 <div className="chatPage">
-                <div>
-                    <form onSubmit={this.setUser}>
-                    <label>
-                        Set Nickname:
-                    </label>
-                <input
-                    name="newUser"
-                    className="new-message"
-                    value={this.state.newUser}
-                    onChange={this.handleChange}
-                    autoFocus />
-                </form>
-                </div>
+                    <div>
+                        <form onSubmit={this.setUser}>
+                            <label>
+                                Välj användarnamn:
+                            </label>
+                            <input
+                                name="newUser"
+                                className="new-message"
+                                value={this.state.newUser}
+                                onChange={this.handleChange}
+                                placeholder="Skriv in användarnamn och tryck Enter"
+                                autoFocus />
+                        </form>
+                    </div>
                 </div>
             );
         } else {
             return (
                 <div className="chatPage">
-                    <h1>Chat</h1>
-                    <p>Nick: {user}</p>
+                    <h2>Chat</h2>
+                    <p>Inloggad som: {user}</p>
                     <div ref={this.scrollRef} id="all-messages" className="all-messages">
                         {messages.map(function (data, index) {
                             return <p key={index}>
-                            {data}
-                            </p>
+                                {data}
+                            </p>;
                         })}
                     </div>
                     <div>
@@ -141,9 +142,8 @@ class Chat extends Component {
                     </div>
                 </div>
             );
-
         }
-    };
+    }
 }
 
 
