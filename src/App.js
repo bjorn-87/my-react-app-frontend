@@ -11,6 +11,7 @@ import {Login} from './Auth.js';
 import Register from './Register.js';
 import Create from './Create.js';
 import Logo from './logo.svg';
+import Chat from './Chat.js';
 
 import './App.css';
 
@@ -31,6 +32,9 @@ function App() {
                             <li>
                                 <Link to="/login">Admin</Link>
                             </li>
+                            <li>
+                                <Link to="/chat">Chat</Link>
+                            </li>
                         </ul>
                     </nav>
                     <Route exact path="/" component={Me} />
@@ -38,6 +42,7 @@ function App() {
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/create" component={Create} />
+                    <Route path="/chat" component={Chat} />
                 </header>
                 <footer className="pageFooter">
                     <p>&copy; Björn Olsson 2020</p>

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+
+.chatPage {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.8rem;
+    margin: auto;
+    padding: 1.5em;
+    width: 60%;
+    background-color: white;
+    min-height: 20em;
+}
+
+.chatPage p {
+    margin: 0;
+    padding: 0;
+}
+
+.all-messages {
+    width: 100%;
+    height: 30vh;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    overflow: auto;
+}
+
+.all-messages p:nth-child(2n) {
+    background-color: #ccc;
+}
+
+.new-message {
+    width: 100%;
+    min-height: 5vh;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
