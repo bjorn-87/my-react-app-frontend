@@ -7,8 +7,7 @@ import './Chat.css';
 const socket = io('https://socket-server.bjos19.me');
 
 var chatSave = {
-    user: "",
-    messages: []
+    user: ""
 };
 
 class Chat extends Component {
@@ -21,6 +20,7 @@ class Chat extends Component {
         this.scrollRef = React.createRef();
 
         this.state = {
+            error: null,
             newUser: "",
             user: "",
             messages: [],
@@ -29,11 +29,25 @@ class Chat extends Component {
     }
 
     componentDidMount() {
+        fetch("http://localhost:8300/list")
+            .then((response) => response.json())
+            .then((res) => {
+                res.forEach((item) => {
+                    this.setState({
+                        messages: [...this.state.messages, `${item.time} ${item.user}: ${item.msg}`]
+                    });
+                });
+            },
+            (error) => {
+                this.setstate({
+                    error
+                });
+            });
+
         this.setState({
             user: chatSave.user,
-            messages: chatSave.messages
         });
-        // console.log(chatSave.messages);
+
         socket.on('connect', function() {
             console.log("connected");
         });
@@ -42,7 +56,6 @@ class Chat extends Component {
             this.setState({
                 messages: [...this.state.messages, `${time} ${user}: ${msg}`]
             });
-            chatSave.messages = this.state.messages;
             this.scrollToBottom();
         });
     }
@@ -80,7 +93,6 @@ class Chat extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.message) {
-            // console.log("submit");
             socket.emit("chat message", {
                 message: this.state.message,
                 user: this.state.user,
@@ -91,10 +103,11 @@ class Chat extends Component {
 
 
     render() {
-        const user = this.state.user;
-        const messages = this.state.messages;
+        const {error, user, messages} = this.state;
 
-        if (!chatSave.user) {
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!chatSave.user) {
             return (
                 <div className="chatPage">
                     <div>
@@ -119,11 +132,11 @@ class Chat extends Component {
                     <h2>Chat</h2>
                     <p>Inloggad som: {user}</p>
                     <div ref={this.scrollRef} id="all-messages" className="all-messages">
-                        {messages.map(function (data, index) {
-                            return <p key={index}>
+                        {messages.map((data, index) => (
+                            <p key={index}>
                                 {data}
-                            </p>;
-                        })}
+                            </p>
+                        ))}
                     </div>
                     <div>
                         <form
