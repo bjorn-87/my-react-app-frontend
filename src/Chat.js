@@ -5,6 +5,8 @@ import './Chat.css';
 
 // const socket = io("http://localhost:8300");
 const socket = io('https://socket-server.bjos19.me');
+// const chat = "http://localhost:8300/list";
+const chat = "https://socket-server.bjos19.me/list";
 
 var chatSave = {
     user: ""
@@ -29,7 +31,7 @@ class Chat extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8300/list")
+        fetch(chat)
             .then((response) => response.json())
             .then((res) => {
                 res.forEach((item) => {
@@ -39,7 +41,7 @@ class Chat extends Component {
                 });
             },
             (error) => {
-                this.setstate({
+                this.setState({
                     error
                 });
             });
